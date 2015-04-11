@@ -21,10 +21,17 @@ module.exports = yeoman.generators.Base.extend({
       name: 'appName',
       message: 'Let\'s get started, what\'s the dank, hype name for your app?',
       default: 'new-sigma-app'
+    },
+    {
+      type: 'input',
+      name: 'appDesc',
+      message: 'Does this application have a description?',
+      default: 'A fresh, new Sigma app.'
     }];
 
     this.prompt(prompts, function (props) {
       this.nameApp = props.appName;
+      this.descApp = props.appDesc;
 
       done();
     }.bind(this));
@@ -32,11 +39,17 @@ module.exports = yeoman.generators.Base.extend({
 
   writing: {
     app: function () {
-      this.mkdirp('app');
+      this.mkdir('app');
 
       this.copy('html/_index.html','app/index.html');
-      this.copy('_package.json', 'package.json');
       this.copy('_bower.json', 'bower.json');
+
+      var replaceText = { 
+          site_name: this.nameApp, 
+          site_desc: this.descApp
+      };
+   
+      this.template('_package.json', 'package.json', replaceText);
     }
   },
 
