@@ -13,7 +13,7 @@ module.exports = yeoman.generators.Base.extend({
 
     // Have Yeoman greet the user.
     this.log(yosay(
-      'Welcome to this fancy, brand spanking new, ' + chalk.red('Sigma Branded') + ' generator!'
+      'Hey good looking. Welcome to the Sigma Generator!'
     ));
 
     var prompts = [{
@@ -118,6 +118,15 @@ module.exports = yeoman.generators.Base.extend({
       //Jade
       if (this.includeJade) {
         this.copy('jade/index.jade','app/templates/index.jade');
+
+          this.copy('jade/includes/global/head.jade','app/templates/includes/global/head.jade');
+          this.copy('jade/includes/global/footer.jade','app/templates/includes/global/footer.jade');
+
+          this.copy('jade/includes/partials/homepage.jade','app/templates/includes/partials/homepage.jade');
+      }
+
+      else{
+        this.copy('html/index.html','app/html/index.html');
       }
 
       //SCSS

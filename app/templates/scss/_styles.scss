@@ -4,7 +4,7 @@
 // *																			 *
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-//
+/*
 // * CONTENTS
 // *
 // * SETTINGS
@@ -15,6 +15,13 @@
 // *
 // * GENERIC
 // * Normalize.css........A level playing field.
+// * Box-sizing...........Better default `box-sizing`.
+// *
+// * VENDOR
+<% if (includeBootstrap) { %>// * Bootstrap........The world's most popular front end framework.<% } %>
+<% if (includeBourbon) { %>// * Bourbon........Lightweight SASS mixin library for base components.<% } %>
+<% if (includeNeat) { %>// * Bourbon Neat........Lightweight SASS mixin library for grid systems.<% } %>
+<% if (includeFontawesome) { %>// * Font Awesome........Font icons.<% } %>
 // * Box-sizing...........Better default `box-sizing`.
 // *
 // * BASE
@@ -28,13 +35,13 @@
 // * Page-foot............The main page footer.
 // *
 // * TRUMPS
-// * Text.................Text helpers.
+// *
+*/
 
 
 /* Settings */
 /* =========================================================================== */
 @import 'settings/global';
-
 
 /* Tools */
 /* =========================================================================== */
@@ -44,6 +51,13 @@
 /* =========================================================================== */
 @import 'generic/normalize';
 @import 'generic/box-sizing';
+
+/* Vendor */
+/* =========================================================================== */
+<% if (includeBootstrap) { %>@import "bootstrap";<% } %>
+<% if (includeBourbon) { %>@import "bourbon";<% } %>
+<% if (includeNeat) { %>@import "neat";<% } %>
+<% if (includeFontawesome) { %>@import "font-awesome";<% } %>
 
 /* Base */
 /* =========================================================================== */
