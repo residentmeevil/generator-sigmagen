@@ -1,7 +1,7 @@
 {
-  "name": "<%= site_name %>",
+  "name": "<%= nameApp %>",
   "version": "0.0.0",
-  "description": "<%= site_desc %>",
+  "description": "<%= descApp %>",
   "dependencies": {
   	"gulp": "3.8.x",
   	"gulp-autoprefixer": "^2.1.0",
@@ -10,8 +10,9 @@
     "gulp-minify-css": "^1.0.0",
     "gulp-ruby-sass": "^1.0.0-alpha.3",
     "gulp-util": "^3.0.4",
-    "gulp-uglify": "^1.1.0",
-    "gulp-liquid": "^0.1.0"
+    "gulp-uglify": "^1.1.0"
+    <% if (includeJade) { %>,"jade": "^1.9.2" ,"gulp-jade": "^1.0.0"<% } %>
+    <% if (includeBootstrap) { %>,"bootstrap-sass": "^3.3.4"<% } %>
   },
   "devDependencies": {
     "del": "^1.1.1"  }
