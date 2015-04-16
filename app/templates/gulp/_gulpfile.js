@@ -35,7 +35,7 @@
 
 <% if (includeJade) { %>
   gulp.task('jade', function (cb) {
-  return gulp.src('app/templates/*.jade')
+  return gulp.src('app/templates/pages/**/*.jade')
     .pipe(gulpJade({
       jade: jade,
       pretty: true
