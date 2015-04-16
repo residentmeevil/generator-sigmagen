@@ -117,12 +117,15 @@ module.exports = yeoman.generators.Base.extend({
 
       //Jade
       if (this.includeJade) {
-        this.copy('jade/index.jade','app/templates/index.jade');
+        this.copy('jade/base.jade','app/templates/base.jade');
 
           this.copy('jade/includes/global/head.jade','app/templates/includes/global/head.jade');
+          this.copy('jade/includes/global/header.jade','app/templates/includes/global/header.jade');
           this.copy('jade/includes/global/footer.jade','app/templates/includes/global/footer.jade');
 
           this.copy('jade/includes/partials/homepage.jade','app/templates/includes/partials/homepage.jade');
+
+          this.copy('jade/pages/index.jade','app/templates/pages/index.jade');
       }
 
       else{
