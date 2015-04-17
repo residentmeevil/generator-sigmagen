@@ -75,8 +75,7 @@ gulp.task('html', function() { 
         .pipe(gulp.dest('dist/assets/fonts')); 
 });<% } %>
 
-
-  gulp.task('webserver', <% if (includeJade) { %>['jade'],<% } %>function() {
+  gulp.task('webserver', ['styles' <% if (includeJade) { %>, 'jade'<% } %>], function() {
     return gulp.src('dist')
       .pipe(webserver({
         livereload: true,
