@@ -134,10 +134,6 @@ module.exports = yeoman.generators.Base.extend({
           this.copy('jade/pages/index.jade','app/templates/pages/index.jade');
       }
 
-      else{
-        this.copy('html/index.html','app/html/index.html');
-      }
-
       //SCSS
       this.copy('scss/_styles.scss','app/assets/scss/styles.scss');
 
