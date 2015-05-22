@@ -35,18 +35,18 @@ module.exports = yeoman.generators.Base.extend({
     message: 'Let\'s talk grids. What do you want bundled in?',
       choices: [
       {
+        name: 'Bootstrap',
+        value: 'includeBootstrap',
+        checked: true
+      },
+      {
         name: 'Bourbon',
         value: 'includeBourbon',
-        checked: true
+        checked: false
       },
       {
         name: 'Bourbon Neat',
         value: 'includeNeat',
-        checked: true
-      },
-      {
-        name: 'Bootstrap',
-        value: 'includeBootstrap',
         checked: false
       }]
     },
@@ -55,10 +55,16 @@ module.exports = yeoman.generators.Base.extend({
     type: 'checkbox',
     name: 'featuresTemplates',
     message: 'Let\'s talk templates. What do you want bundled in?',
-      choices: [{
+      choices: [
+      {
+        name: 'Handlebars',
+        value: 'includeHandlebars',
+        checked: true
+      },
+      {
         name: 'Jade',
         value: 'includeJade',
-        checked: true
+        checked: false
       }]
     },
 
@@ -149,9 +155,11 @@ module.exports = yeoman.generators.Base.extend({
 
         this.copy('scss/tools/_mixins.scss','app/assets/scss/tools/_mixins.scss');
 
+      //JS
+      this.copy('js/scripts.js','app/assets/js/scripts.js');
+
       //CONFIG
       this.copy('gulp/_gulpfile.js','gulpfile.js');
-   
       this.template('_package.json', 'package.json');
       this.template('_bower.json', 'bower.json');
       this.template('_README.md', 'README.md');
