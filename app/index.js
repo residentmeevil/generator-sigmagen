@@ -135,21 +135,36 @@ module.exports = yeoman.generators.Base.extend({
       }
 
       //SCSS
-      this.copy('scss/_styles.scss','app/assets/scss/styles.scss');
+      this.copy('scss/styles.scss','app/assets/scss/styles.scss');
 
-        this.copy('scss/base/_headings.scss','app/assets/scss/base/_headings.scss');
+        this.copy('scss/base/_all.scss','app/assets/scss/base/_all.scss');
 
-        this.copy('scss/components/_page-head.scss','app/assets/scss/components/_page-head.scss');
-        this.copy('scss/components/_page-foot.scss','app/assets/scss/components/_page-foot.scss');
+        this.copy('scss/components/_all.scss','app/assets/scss/components/_all.scss');
 
-        this.copy('scss/generic/_box-sizing.scss','app/assets/scss/generic/_box-sizing.scss');
-        this.copy('scss/generic/_normalize.scss','app/assets/scss/generic/_normalize.scss');
+        this.copy('scss/config/_all.scss','app/assets/scss/config/_all.scss');
+          this.copy('scss/config/_box-sizing.scss','app/assets/scss/config/_box-sizing.scss');
+          this.copy('scss/config/_normalize.scss','app/assets/scss/config/_normalize.scss');
 
-        this.copy('scss/objects/_wrappers.scss','app/assets/scss/objects/_wrappers.scss');
+        if (this.includeNeat) {
+          this.copy('scss/grid/_all.scss','app/assets/scss/grid/_all.scss');
+            this.copy('scss/grid/_scaffolding.scss','app/assets/scss/grid/_scaffolding.scss');
+        }
 
-        this.copy('scss/settings/_global.scss','app/assets/scss/settings/_global.scss');
+        this.copy('scss/layout/_all.scss','app/assets/scss/layout/_all.scss');
 
-        this.copy('scss/tools/_mixins.scss','app/assets/scss/tools/_mixins.scss');
+        this.copy('scss/mixins/_all.scss','app/assets/scss/mixins/_all.scss');
+          this.copy('scss/mixins/_font-size.scss','app/assets/scss/mixins/_font-size.scss');
+          this.copy('scss/mixins/_retinize.scss','app/assets/scss/mixins/_retinize.scss');
+
+        this.copy('scss/pages/_all.scss','app/assets/scss/pages/_all.scss');
+
+        this.copy('scss/variables/_all.scss','app/assets/scss/variables/_all.scss');
+        if (this.includeNeat) {
+          this.copy('scss/variables/_break-points.scss','app/assets/scss/variables/_break-points.scss');
+        }
+
+        this.copy('scss/vendor/_all.scss','app/assets/scss/vendor/_all.scss');
+
 
       //JS
       this.copy('js/scripts.js','app/assets/js/scripts.js');
