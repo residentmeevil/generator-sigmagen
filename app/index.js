@@ -57,8 +57,8 @@ module.exports = yeoman.generators.Base.extend({
     message: 'Let\'s talk templates. What do you want bundled in?',
       choices: [
       {
-        name: 'Handlebars',
-        value: 'includeHandlebars',
+        name: 'Swig',
+        value: 'includeSwig',
         checked: true
       },
       {
@@ -111,6 +111,7 @@ module.exports = yeoman.generators.Base.extend({
         this.includeBootstrap = hasFeatureGrid('includeBootstrap');
 
         this.includeJade = hasFeatureTemplate('includeJade');
+        this.includeSwig = hasFeatureTemplate('includeSwig');
 
         this.includeFontawesome = hasFeatureExtra('includeFontawesome');
 

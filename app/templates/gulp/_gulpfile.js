@@ -3,6 +3,7 @@
       autoprefixer      = require('gulp-autoprefixer'),
       <% if (includeJade) { %>jade  = require('jade'),
       gulpJade  = require('gulp-jade'),<% } %>
+      <% if (includeSwig) { %>swig              = require('gulp-swig'),<% } %>
       del  		          = require('del'),
       concat            = require('gulp-concat'),
       jshint            = require('gulp-jshint'),
@@ -15,7 +16,7 @@
   }
 
   gulp.task('default', ['clean'], function() {
-      gulp.start('styles',<% if (includeJade) { %>'jade',<% } %><% if (includeFontawesome) { %>'icons',<% } %>'jshint', 'scripts', 'favicon', 'watch', 'webserver');
+      gulp.start('styles',<% if (includeJade) { %>'jade',<% } %><% if (includeSwig) { %>'swig',<% } %><% if (includeFontawesome) { %>'icons',<% } %>'jshint', 'scripts', 'favicon', 'watch', 'webserver');
   });
 
   gulp.task('clean', function(cb) {
@@ -45,6 +46,13 @@
     }))
     .pipe(gulp.dest('dist/'))
     cb(err);
+});<% } %>
+
+<% if (includeSwig) { %>
+gulp.task('swig', function() {
+  return gulp.src('app/templates/pages/**/*.html')
+    .pipe(swig())
+    .pipe(gulp.dest('dist/'))
 });<% } %>
 
 gulp.task('jshint', function() {
