@@ -5,7 +5,7 @@
 // Wrapping elements
 // ---------------------------------------------------------------------------
 .row {
-	@include outer-container;
+	@include outer-container(71.250em);
 }
 
 // Grid elements

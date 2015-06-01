@@ -15,7 +15,7 @@
   }
 
   gulp.task('default', ['clean'], function() {
-      gulp.start('styles',<% if (includeJade) { %>'jade',<% } %><% if (includeFontawesome) { %>'icons',<% } %>'jshint', 'scripts', 'watch', 'webserver');
+      gulp.start('styles',<% if (includeJade) { %>'jade',<% } %><% if (includeFontawesome) { %>'icons',<% } %>'jshint', 'scripts', 'favicon', 'watch', 'webserver');
   });
 
   gulp.task('clean', function(cb) {
@@ -65,8 +65,8 @@ gulp.task('scripts', function() { 
         .pipe(gulp.dest('dist/assets/js')); 
 });
 
-gulp.task('html', function() { 
-    return gulp.src('app/html/**.html') 
+gulp.task('favicon', function() { 
+    return gulp.src('app/favicon.ico') 
         .pipe(gulp.dest('dist')); 
 });
 

@@ -145,8 +145,14 @@ module.exports = yeoman.generators.Base.extend({
           this.copy('scss/config/_box-sizing.scss','app/assets/scss/config/_box-sizing.scss');
           this.copy('scss/config/_normalize.scss','app/assets/scss/config/_normalize.scss');
 
-        if (this.includeNeat) {
+        
           this.copy('scss/grid/_all.scss','app/assets/scss/grid/_all.scss');
+
+          if (this.includeBootstrap) {
+            this.copy('scss/grid/_overrides.scss','app/assets/scss/grid/_overrides.scss');
+        }
+
+        if (this.includeNeat) {
             this.copy('scss/grid/_scaffolding.scss','app/assets/scss/grid/_scaffolding.scss');
         }
 
@@ -174,6 +180,7 @@ module.exports = yeoman.generators.Base.extend({
       this.template('_package.json', 'package.json');
       this.template('_bower.json', 'bower.json');
       this.template('_README.md', 'README.md');
+      this.template('favicon.ico', 'app/favicon.ico');
     }
   },
 
