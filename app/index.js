@@ -188,6 +188,7 @@ module.exports = yeoman.generators.Base.extend({
       this.template('_bower.json', 'bower.json');
       this.template('_README.md', 'README.md');
       this.template('favicon.ico', 'app/favicon.ico');
+      this.template('styleguide/styleguide.html', 'app/styleguide/styleguide.html');
     }
   },
 
