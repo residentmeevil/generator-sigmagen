@@ -16,7 +16,7 @@
   }
 
   gulp.task('default', ['clean'], function() {
-      gulp.start('styles',<% if (includeJade) { %>'jade',<% } %><% if (includeSwig) { %>'swig',<% } %><% if (includeFontawesome) { %>'icons',<% } %>'jshint', 'scripts',  'styleguide', 'favicon', 'watch', 'webserver');
+      gulp.start('styles',<% if (includeJade) { %>'jade',<% } %><% if (includeSwig) { %>'swig',<% } %><% if (includeFontawesome) { %>'icons',<% } %>'jshint', 'scripts',  'styleguide', 'favicon', 'images', 'watch', 'webserver');
   });
 
   gulp.task('clean', function(cb) {
@@ -76,6 +76,11 @@ gulp.task('scripts', function() { 
 gulp.task('favicon', function() { 
     return gulp.src('app/favicon.ico') 
         .pipe(gulp.dest('dist')); 
+});
+
+gulp.task('images', function() { 
+    return gulp.src('assets/img/**/*') 
+        .pipe(gulp.dest('dist/assets/img')); 
 });
 
 gulp.task('styleguide', function() { 
