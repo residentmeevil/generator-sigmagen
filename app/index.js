@@ -35,18 +35,18 @@ module.exports = yeoman.generators.Base.extend({
     message: 'Let\'s talk grids. What do you want bundled in?',
       choices: [
       {
+        name: 'Bootstrap',
+        value: 'includeBootstrap',
+        checked: true
+      },
+      {
         name: 'Bourbon',
         value: 'includeBourbon',
-        checked: true
+        checked: false
       },
       {
         name: 'Bourbon Neat',
         value: 'includeNeat',
-        checked: true
-      },
-      {
-        name: 'Bootstrap',
-        value: 'includeBootstrap',
         checked: false
       }]
     },
@@ -55,10 +55,16 @@ module.exports = yeoman.generators.Base.extend({
     type: 'checkbox',
     name: 'featuresTemplates',
     message: 'Let\'s talk templates. What do you want bundled in?',
-      choices: [{
+      choices: [
+      {
+        name: 'Swig',
+        value: 'includeSwig',
+        checked: true
+      },
+      {
         name: 'Jade',
         value: 'includeJade',
-        checked: true
+        checked: false
       }]
     },
 
@@ -105,6 +111,7 @@ module.exports = yeoman.generators.Base.extend({
         this.includeBootstrap = hasFeatureGrid('includeBootstrap');
 
         this.includeJade = hasFeatureTemplate('includeJade');
+        this.includeSwig = hasFeatureTemplate('includeSwig');
 
         this.includeFontawesome = hasFeatureExtra('includeFontawesome');
 
@@ -122,39 +129,67 @@ module.exports = yeoman.generators.Base.extend({
           this.copy('jade/includes/global/head.jade','app/templates/includes/global/head.jade');
           this.copy('jade/includes/global/header.jade','app/templates/includes/global/header.jade');
           this.copy('jade/includes/global/footer.jade','app/templates/includes/global/footer.jade');
-
-          this.copy('jade/includes/partials/homepage.jade','app/templates/includes/partials/homepage.jade');
-
+          
           this.copy('jade/pages/index.jade','app/templates/pages/index.jade');
       }
 
-      else{
-        this.copy('html/index.html','app/html/index.html');
+      //Swig
+       if (this.includeSwig) {
+          this.copy('swig/base.html','app/templates/base.html');
+
+            this.copy('swig/pages/index.html','app/templates/pages/index.html');
       }
 
       //SCSS
-      this.copy('scss/_styles.scss','app/assets/scss/styles.scss');
+      this.copy('scss/styles.scss','app/assets/scss/styles.scss');
 
-        this.copy('scss/base/_headings.scss','app/assets/scss/base/_headings.scss');
+        this.copy('scss/base/_all.scss','app/assets/scss/base/_all.scss');
 
-        this.copy('scss/components/_page-head.scss','app/assets/scss/components/_page-head.scss');
-        this.copy('scss/components/_page-foot.scss','app/assets/scss/components/_page-foot.scss');
+        this.copy('scss/components/_all.scss','app/assets/scss/components/_all.scss');
 
-        this.copy('scss/generic/_box-sizing.scss','app/assets/scss/generic/_box-sizing.scss');
-        this.copy('scss/generic/_normalize.scss','app/assets/scss/generic/_normalize.scss');
+        this.copy('scss/config/_all.scss','app/assets/scss/config/_all.scss');
+          this.copy('scss/config/_box-sizing.scss','app/assets/scss/config/_box-sizing.scss');
+          this.copy('scss/config/_normalize.scss','app/assets/scss/config/_normalize.scss');
 
-        this.copy('scss/objects/_wrappers.scss','app/assets/scss/objects/_wrappers.scss');
+        
+          this.copy('scss/grid/_all.scss','app/assets/scss/grid/_all.scss');
 
-        this.copy('scss/settings/_global.scss','app/assets/scss/settings/_global.scss');
+        if (this.includeBootstrap) {
+            this.copy('scss/grid/_overrides.scss','app/assets/scss/grid/_overrides.scss');
+        }
 
-        this.copy('scss/tools/_mixins.scss','app/assets/scss/tools/_mixins.scss');
+        if (this.includeNeat) {
+            this.copy('scss/grid/_scaffolding.scss','app/assets/scss/grid/_scaffolding.scss');
+        }
+
+        this.copy('scss/layout/_all.scss','app/assets/scss/layout/_all.scss');
+
+        this.copy('scss/mixins/_all.scss','app/assets/scss/mixins/_all.scss');
+          this.copy('scss/mixins/_font-size.scss','app/assets/scss/mixins/_font-size.scss');
+          this.copy('scss/mixins/_retinize.scss','app/assets/scss/mixins/_retinize.scss');
+
+        this.copy('scss/pages/_all.scss','app/assets/scss/pages/_all.scss');
+
+        this.copy('scss/variables/_all.scss','app/assets/scss/variables/_all.scss');
+
+        if (this.includeNeat) {
+          this.copy('scss/variables/_break-points.scss','app/assets/scss/variables/_break-points.scss');
+        }
+
+        this.copy('scss/vendor/_all.scss','app/assets/scss/vendor/_all.scss');
+
+
+      //JS
+      this.copy('js/scripts.js','app/assets/js/scripts.js');
 
       //CONFIG
       this.copy('gulp/_gulpfile.js','gulpfile.js');
-   
       this.template('_package.json', 'package.json');
       this.template('_bower.json', 'bower.json');
       this.template('_README.md', 'README.md');
+      this.template('favicon.ico', 'app/favicon.ico');
+      this.template('styleguide/styleguide.html', 'app/styleguide/styleguide.html');
+      this.template('img/placeholder.gif', 'app/assets/img/placeholder.gif');
     }
   },
 

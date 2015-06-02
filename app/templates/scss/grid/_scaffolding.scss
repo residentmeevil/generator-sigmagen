@@ -1,0 +1,36 @@
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// *	Scaffolding.scss                                                     *
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+// Wrapping elements
+// ---------------------------------------------------------------------------
+.row {
+	@include outer-container(71.250em);
+}
+
+// Grid elements
+// ---------------------------------------------------------------------------
+@for $i from 1 through 12 {
+    //Extra small grid
+    .col-xs-#{$i} {
+    	@include span-columns($i);
+    }
+}
+
+@for $i from 1 through 12 {
+    //Small grid
+    .col-sm-#{$i} {
+    	@include media($small-screen) {
+    		@include span-columns($i);
+    	}
+    }
+}
+
+@for $i from 1 through 12 {
+    //Medium grid
+	.col-md-#{$i} {
+    	@include media($medium-screen) {
+    		@include span-columns($i);
+    	}
+    }
+}

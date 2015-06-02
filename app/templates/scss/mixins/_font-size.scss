@@ -1,0 +1,11 @@
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// * Font Size Mixin                                                         *
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+// Set the font size in rems and provide pixel fallback
+//     $px: the target font size in pixels
+// ---------------------------------------------------------------------------
+@mixin font-size($px) {
+    font-size: #{$px}px;
+    font-size: #{$px/10}rem;
+}

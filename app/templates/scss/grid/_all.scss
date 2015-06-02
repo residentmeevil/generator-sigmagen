@@ -1,0 +1,6 @@
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// *	all.scss                                                      	 	 *
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+<% if (includeNeat) { %>@import 'scaffolding';<% } %>
+<% if (includeBootstrap) { %>@import 'overrides';<% } %>
