@@ -129,10 +129,15 @@ module.exports = yeoman.generators.Base.extend({
           this.copy('jade/includes/global/head.jade','app/templates/includes/global/head.jade');
           this.copy('jade/includes/global/header.jade','app/templates/includes/global/header.jade');
           this.copy('jade/includes/global/footer.jade','app/templates/includes/global/footer.jade');
-
-          this.copy('jade/includes/partials/homepage.jade','app/templates/includes/partials/homepage.jade');
-
+          
           this.copy('jade/pages/index.jade','app/templates/pages/index.jade');
+      }
+
+      //Swig
+       if (this.includeSwig) {
+          this.copy('swig/base.html','app/templates/base.html');
+
+            this.copy('swig/pages/index.html','app/templates/pages/index.html');
       }
 
       //SCSS
@@ -149,7 +154,7 @@ module.exports = yeoman.generators.Base.extend({
         
           this.copy('scss/grid/_all.scss','app/assets/scss/grid/_all.scss');
 
-          if (this.includeBootstrap) {
+        if (this.includeBootstrap) {
             this.copy('scss/grid/_overrides.scss','app/assets/scss/grid/_overrides.scss');
         }
 
@@ -166,6 +171,7 @@ module.exports = yeoman.generators.Base.extend({
         this.copy('scss/pages/_all.scss','app/assets/scss/pages/_all.scss');
 
         this.copy('scss/variables/_all.scss','app/assets/scss/variables/_all.scss');
+
         if (this.includeNeat) {
           this.copy('scss/variables/_break-points.scss','app/assets/scss/variables/_break-points.scss');
         }

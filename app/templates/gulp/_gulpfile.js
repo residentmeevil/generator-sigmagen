@@ -11,8 +11,8 @@
       webserver         = require('gulp-webserver');
 
   var config = {
-       bowerDir: './bower_components' ,
-       npmDir: './node_modules' 
+      bowerDir: './bower_components' ,
+      npmDir: './node_modules' 
   }
 
   gulp.task('default', ['clean'], function() {
