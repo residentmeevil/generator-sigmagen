@@ -78,9 +78,9 @@ gulp.task('favicon', function() { 
         .pipe(gulp.dest('dist')); 
 });
 
-gulp.task('images', function() { 
-    return gulp.src('assets/img/**/*') 
-        .pipe(gulp.dest('dist/assets/img')); 
+gulp.task('images', function() {
+    return gulp.src('app/assets/img/**/*')
+        .pipe(gulp.dest('dist/assets/img'));
 });
 
 gulp.task('styleguide', function() { 

@@ -2,6 +2,7 @@
   "name": "<%= nameApp %>",
   "version": "0.0.0",
   "description": "<%= descApp %>",
+  "license": "",
   "repository":{
       "type" : "git",
       "url"  : ""

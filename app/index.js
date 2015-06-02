@@ -189,6 +189,7 @@ module.exports = yeoman.generators.Base.extend({
       this.template('_README.md', 'README.md');
       this.template('favicon.ico', 'app/favicon.ico');
       this.template('styleguide/styleguide.html', 'app/styleguide/styleguide.html');
+      this.template('img/placeholder.gif', 'app/assets/img/placeholder.gif');
     }
   },
 
