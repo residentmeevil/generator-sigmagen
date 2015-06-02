@@ -1,6 +1,6 @@
 {
   "name": "generator-sigmagen",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A Yeoman generator for cool, beautiful people that allows them to create an accessible, powerful, extendable web app in less time than it takes to insult an owl.",
   "license": "MIT",
   "main": "app/index.js",
