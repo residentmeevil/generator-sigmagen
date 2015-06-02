@@ -1,7 +1,7 @@
 {
   "name": "generator-sigmagen",
-  "version": "0.0.0",
-  "description": "Yeoman generator",
+  "version": "0.2.0",
+  "description": "A Yeoman generator for cool, beautiful people that allows them to create an accessible, powerful, extendable web app in less time than it takes to insult an owl.",
   "license": "MIT",
   "main": "app/index.js",
   "repository": "residentmeevil/generator-sigmagen",
@@ -16,10 +16,8 @@
   "files": [
     "app"
   ],
-  "keywords": [
-    "yeoman-generator"
-  ],
-  "dependencies": {
+"keywords": ["yeoman-generator"],
+"dependencies": {
     "yeoman-generator": "^0.19.0",
     "chalk": "^1.0.0",
     "yosay": "^1.0.2"
