@@ -16,7 +16,7 @@
   }
 
   gulp.task('default', ['clean'], function() {
-      gulp.start('styles',<% if (includeJade) { %>'jade',<% } %><% if (includeSwig) { %>'swig',<% } %><% if (includeFontawesome) { %>'icons',<% } %>'jshint', 'scripts',  'styleguide', 'favicon', 'images', 'watch', 'webserver');
+      gulp.start('styles',<% if (includeJade) { %>'jade',<% } %><% if (includeSwig) { %>'swig',<% } %><% if (includeFontawesome) { %>'icons',<% } %>'jshint', 'scripts', 'fonts', 'styleguide', 'favicon', 'images', 'watch', 'webserver');
   });
 
   gulp.task('clean', function(cb) {
@@ -51,7 +51,12 @@
 <% if (includeSwig) { %>
 gulp.task('swig', function() {
   return gulp.src('app/templates/pages/**/*.html')
-    .pipe(swig())
+    .pipe(swig({
+        defaults: {
+          cache: false
+        }
+      }
+    ))
     .pipe(gulp.dest('dist/'))
 });<% } %>
 
@@ -83,6 +88,11 @@ gulp.task('images', function() {
         .pipe(gulp.dest('dist/assets/img'));
 });
 
+gulp.task('fonts', function() {
+    return gulp.src('app/assets/fonts/**/*')
+        .pipe(gulp.dest('dist/assets/fonts'));
+});
+
 gulp.task('styleguide', function() { 
     return gulp.src('app/styleguide/styleguide.html') 
         .pipe(gulp.dest('dist')); 
@@ -110,6 +120,8 @@ gulp.task('styleguide', function() { 
 
   gulp.task('watch', function() {
     <% if (includeJade) { %>gulp.watch('app/templates/**/*.jade', ['jade']);<% } %>
+    <% if (includeSwig) { %>gulp.watch('app/templates/**/*.html', ['swig']);<% } %>
     gulp.watch('app/assets/scss/**/*.scss', ['styles']);
     gulp.watch('app/assets/js/**/*.js', ['jshint', 'scripts']);
+    gulp.watch('app/assets/img/**/*', ['images']);
   });
