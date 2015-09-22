@@ -129,7 +129,7 @@ module.exports = yeoman.generators.Base.extend({
           this.copy('jade/includes/global/head.jade','app/templates/includes/global/head.jade');
           this.copy('jade/includes/global/header.jade','app/templates/includes/global/header.jade');
           this.copy('jade/includes/global/footer.jade','app/templates/includes/global/footer.jade');
-          
+
           this.copy('jade/pages/index.jade','app/templates/pages/index.jade');
       }
 
@@ -143,7 +143,8 @@ module.exports = yeoman.generators.Base.extend({
       //SCSS
       this.copy('scss/styles.scss','app/assets/scss/styles.scss');
 
-        this.copy('scss/base/_all.scss','app/assets/scss/base/_all.scss');
+      this.copy('scss/base/_all.scss','app/assets/scss/base/_all.scss');
+        this.copy('scss/base/_links.scss','app/assets/scss/base/_links.scss');
 
         this.copy('scss/components/_all.scss','app/assets/scss/components/_all.scss');
 
@@ -151,7 +152,7 @@ module.exports = yeoman.generators.Base.extend({
           this.copy('scss/config/_box-sizing.scss','app/assets/scss/config/_box-sizing.scss');
           this.copy('scss/config/_normalize.scss','app/assets/scss/config/_normalize.scss');
 
-        
+
           this.copy('scss/grid/_all.scss','app/assets/scss/grid/_all.scss');
 
         if (this.includeBootstrap) {
