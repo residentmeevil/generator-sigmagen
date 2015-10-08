@@ -3,7 +3,7 @@
       autoprefixer      = require('gulp-autoprefixer'),
       <% if (includeJade) { %>jade  = require('jade'),
       gulpJade  = require('gulp-jade'),<% } %>
-      <% if (includeSwig) { %>swig              = require('gulp-swig'),<% } %>
+      <% if (includeSwig) { %>swig             = require('gulp-swig'),<% } %>
       del  		          = require('del'),
       concat            = require('gulp-concat'),
       jshint            = require('gulp-jshint'),
@@ -24,7 +24,7 @@
   });
 
   gulp.task('styles', function() {
-    return sass('app/assets/scss/styles.scss', { 
+    return sass('app/assets/scss/styles.scss', {
       style: 'expanded',
       loadPath:[
         <% if (includeFontawesome) { %>config.bowerDir + '/fontawesome/scss',<% } %>
