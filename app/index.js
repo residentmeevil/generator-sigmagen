@@ -60,11 +60,6 @@ module.exports = yeoman.generators.Base.extend({
         name: 'Swig',
         value: 'includeSwig',
         checked: true
-      },
-      {
-        name: 'Jade',
-        value: 'includeJade',
-        checked: false
       }]
     },
 
@@ -110,7 +105,6 @@ module.exports = yeoman.generators.Base.extend({
         this.includeNeat = hasFeatureGrid('includeNeat');
         this.includeBootstrap = hasFeatureGrid('includeBootstrap');
 
-        this.includeJade = hasFeatureTemplate('includeJade');
         this.includeSwig = hasFeatureTemplate('includeSwig');
 
         this.includeFontawesome = hasFeatureExtra('includeFontawesome');
@@ -121,17 +115,6 @@ module.exports = yeoman.generators.Base.extend({
 
   writing: {
     app: function () {
-
-      //Jade
-      if (this.includeJade) {
-        this.copy('jade/base.jade','app/templates/base.jade');
-
-          this.copy('jade/includes/global/head.jade','app/templates/includes/global/head.jade');
-          this.copy('jade/includes/global/header.jade','app/templates/includes/global/header.jade');
-          this.copy('jade/includes/global/footer.jade','app/templates/includes/global/footer.jade');
-
-          this.copy('jade/pages/index.jade','app/templates/pages/index.jade');
-      }
 
       //Swig
        if (this.includeSwig) {
@@ -188,6 +171,7 @@ module.exports = yeoman.generators.Base.extend({
       this.template('_package.json', 'package.json');
       this.template('_bower.json', 'bower.json');
       this.template('_README.md', 'README.md');
+      this.template('_.gitignore', '.gitignore');
       this.template('favicon.ico', 'app/favicon.ico');
       this.template('styleguide/styleguide.html', 'app/styleguide/styleguide.html');
       this.template('img/placeholder.gif', 'app/assets/img/placeholder.gif');
