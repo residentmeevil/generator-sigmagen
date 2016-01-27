@@ -59,6 +59,7 @@ gulp.task('jshint', function() {
 gulp.task('scripts', function() { 
     return gulp.src([
         config.npmDir + '/jquery/dist/jquery.min.js',
+        <% if (includeBootstrap) { %>config.npmDir + '/bootstrap-sass/assets/javascripts/bootstrap.min.js',<% } %>
         'app/assets/js/vendor/*.js',
         'app/assets/js/*.js'
     ])

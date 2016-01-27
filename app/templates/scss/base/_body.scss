@@ -1,0 +1,10 @@
+html{
+	  font-size: 62.5%;
+		height: 100%;
+}
+
+body{
+  @include font-size(14);
+
+	height: 100%;
+}

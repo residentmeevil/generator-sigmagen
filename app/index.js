@@ -127,13 +127,16 @@ module.exports = yeoman.generators.Base.extend({
       this.copy('scss/styles.scss','app/assets/scss/styles.scss');
 
       this.copy('scss/base/_all.scss','app/assets/scss/base/_all.scss');
+        this.copy('scss/base/_body.scss','app/assets/scss/base/_body.scss');
         this.copy('scss/base/_links.scss','app/assets/scss/base/_links.scss');
+        this.copy('scss/base/_lists.scss','app/assets/scss/base/_lists.scss');
 
         this.copy('scss/components/_all.scss','app/assets/scss/components/_all.scss');
 
         this.copy('scss/config/_all.scss','app/assets/scss/config/_all.scss');
           this.copy('scss/config/_box-sizing.scss','app/assets/scss/config/_box-sizing.scss');
           this.copy('scss/config/_normalize.scss','app/assets/scss/config/_normalize.scss');
+          this.copy('scss/config/_clearfix.scss','app/assets/scss/config/_clearfix.scss');
 
 
           this.copy('scss/grid/_all.scss','app/assets/scss/grid/_all.scss');
@@ -151,14 +154,14 @@ module.exports = yeoman.generators.Base.extend({
         this.copy('scss/mixins/_all.scss','app/assets/scss/mixins/_all.scss');
           this.copy('scss/mixins/_font-size.scss','app/assets/scss/mixins/_font-size.scss');
           this.copy('scss/mixins/_retinize.scss','app/assets/scss/mixins/_retinize.scss');
+          this.copy('scss/mixins/_transition.scss','app/assets/scss/mixins/_transition.scss');
 
         this.copy('scss/pages/_all.scss','app/assets/scss/pages/_all.scss');
 
         this.copy('scss/variables/_all.scss','app/assets/scss/variables/_all.scss');
 
-        if (this.includeNeat) {
-          this.copy('scss/variables/_break-points.scss','app/assets/scss/variables/_break-points.scss');
-        }
+        this.copy('scss/variables/_break-points.scss','app/assets/scss/variables/_break-points.scss');
+        this.copy('scss/variables/_image-path.scss','app/assets/scss/variables/_image-path.scss');
 
         this.copy('scss/vendor/_all.scss','app/assets/scss/vendor/_all.scss');
 
