@@ -1,14 +1,12 @@
   var gulp 		          = require('gulp'),
       sass 		          = require('gulp-ruby-sass'),
       autoprefixer      = require('gulp-autoprefixer'),
-      <% if (includeJade) { %>jade  = require('jade'),
-      gulpJade  = require('gulp-jade'),<% } %>
       <% if (includeSwig) { %>swig             = require('gulp-swig'),<% } %>
       del  		          = require('del'),
       concat            = require('gulp-concat'),
       jshint            = require('gulp-jshint'),
       uglify            = require('gulp-uglify'),
-      webserver         = require('gulp-webserver');
+      browserSync       = require('browser-sync').create();
 
   var config = {
       bowerDir: './bower_components' ,
@@ -16,7 +14,7 @@
   }
 
   gulp.task('default', ['clean'], function() {
-      gulp.start('styles',<% if (includeJade) { %>'jade',<% } %><% if (includeSwig) { %>'swig',<% } %><% if (includeFontawesome) { %>'icons',<% } %>'jshint', 'scripts', 'fonts', 'styleguide', 'favicon', 'images', 'watch', 'webserver');
+      gulp.start('styles',<% if (includeSwig) { %>'swig',<% } %><% if (includeFontawesome) { %>'icons',<% } %>'jshint', 'scripts', 'fonts', 'styleguide', 'favicon', 'images', 'browser-sync');
   });
 
   gulp.task('clean', function(cb) {
@@ -35,18 +33,8 @@
       })
       .pipe(autoprefixer())
       .pipe(gulp.dest('dist/assets/css'))
+      .pipe(browserSync.stream());
   });
-
-<% if (includeJade) { %>
-  gulp.task('jade', function (cb) {
-  return gulp.src('app/templates/pages/**/*.jade')
-    .pipe(gulpJade({
-      jade: jade,
-      pretty: true
-    }))
-    .pipe(gulp.dest('dist/'))
-    cb(err);
-});<% } %>
 
 <% if (includeSwig) { %>
 gulp.task('swig', function() {
@@ -58,6 +46,7 @@ gulp.task('swig', function() {
       }
     ))
     .pipe(gulp.dest('dist/'))
+    .pipe(browserSync.stream());
 });<% } %>
 
 gulp.task('jshint', function() {
@@ -70,12 +59,14 @@ gulp.task('jshint', function() {
 gulp.task('scripts', function() { 
     return gulp.src([
         config.npmDir + '/jquery/dist/jquery.min.js',
+        <% if (includeBootstrap) { %>config.npmDir + '/bootstrap-sass/assets/javascripts/bootstrap.min.js',<% } %>
         'app/assets/js/vendor/*.js',
         'app/assets/js/*.js'
     ])
         .pipe(concat('scripts.js'))
         .pipe(uglify())
-        .pipe(gulp.dest('dist/assets/js')); 
+        .pipe(gulp.dest('dist/assets/js'))
+        .pipe(browserSync.stream());
 });
 
 gulp.task('favicon', function() { 
@@ -85,7 +76,8 @@ gulp.task('favicon', function() { 
 
 gulp.task('images', function() {
     return gulp.src('app/assets/img/**/*')
-        .pipe(gulp.dest('dist/assets/img'));
+        .pipe(gulp.dest('dist/assets/img'))
+        .pipe(browserSync.stream());
 });
 
 gulp.task('fonts', function() {
@@ -101,25 +93,18 @@ gulp.task('styleguide', function() { 
 <% if (includeFontawesome) { %>
   gulp.task('icons', function() { 
     return gulp.src(config.bowerDir + '/fontawesome/fonts/**.*') 
-        .pipe(gulp.dest('dist/assets/fonts')); 
+        .pipe(gulp.dest('dist/assets/fonts'))
+        .pipe(browserSync.stream()); 
 });<% } %>
 
-  gulp.task('webserver', ['styles' <% if (includeJade) { %>, 'jade'<% } %>], function() {
-    return gulp.src('dist')
-      .pipe(webserver({
-        livereload: true,
+  gulp.task('browser-sync', ['styles' <% if (includeSwig) { %>, 'swig'<% } %>], function() {
+    // Static server
+    browserSync.init({
+        server: {
+            baseDir: "./dist"
+        }
+    });
 
-        //Change this value to "True" to be taken to a directory listing upon running gulp
-        directoryListing: {
-            enable: false,
-            path: 'dist'
-        },
-        open: true
-      }));
-  });
-
-  gulp.task('watch', function() {
-    <% if (includeJade) { %>gulp.watch('app/templates/**/*.jade', ['jade']);<% } %>
     <% if (includeSwig) { %>gulp.watch('app/templates/**/*.html', ['swig']);<% } %>
     gulp.watch('app/assets/scss/**/*.scss', ['styles']);
     gulp.watch('app/assets/js/**/*.js', ['jshint', 'scripts']);

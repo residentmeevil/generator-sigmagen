@@ -2,4 +2,5 @@
 // *	all.scss                                                      	 	 *
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-<% if (includeNeat) { %>@import 'break-points';<% } %>
+@import 'break-points';
+@import 'image-path';
