@@ -9,7 +9,7 @@
       browserSync       = require('browser-sync').create();
 
   var config = {
-      bowerDir: './www/lib' ,
+      bowerDir: './bower_components' ,
       npmDir: './node_modules' 
   }
 
