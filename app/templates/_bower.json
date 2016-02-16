@@ -2,7 +2,7 @@
   "name": "package",
   "version": "0.0.0",
   "dependencies": {
-  	<% if (includeBourbon) { %>,"bourbon": "~4.2.2",<% } %>
+  	<% if (includeBourbon || includeNeat) { %>"bourbon": "~4.2.2",<% } %>
   	<% if (includeNeat) { %>"neat": "~1.7.2",<% } %>
   	<% if (includeFontawesome) { %>"fontawesome": "~4.3.0"<% } %>
   }

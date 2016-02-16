@@ -15,7 +15,7 @@
 /* Vendor */
 /* =========================================================================== */
 <% if (includeBootstrap) { %>@import "bootstrap";<% } %>
-<% if (includeBourbon) { %>@import "bourbon";<% } %>
+<% if (includeBourbon || includeNeat) { %>@import "bourbon";<% } %>
 <% if (includeNeat) { %>@import "neat";<% } %>
 <% if (includeFontawesome) { %>@import "font-awesome";<% } %>
 
