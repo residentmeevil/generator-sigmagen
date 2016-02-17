@@ -64,14 +64,24 @@ module.exports = yeoman.generators.Base.extend({
     },
 
     {
-    type: 'checkbox',
-    name: 'featuresExtras',
-    message: 'Let\'s talk extras. What do you want bundled in?',
-    choices: [{
-      name: 'Font awesome',
-      value: 'includeFontawesome',
-      checked: true
-    }]
+        type: 'checkbox',
+        name: 'featuresExtras',
+        message: 'Let\'s talk extras. What do you want bundled in?',
+            choices: [{
+                name: 'Font awesome',
+                value: 'includeFontawesome',
+                checked: true   
+            }]
+    },
+    {
+        type: 'checkbox',
+        name: 'featuresContainers',
+        message: 'Let\'s talk containers. What do you want bundled in?',
+            choices: [{
+                name: 'Docker File',
+                value: 'includeDockerFile',
+                checked: true
+            }]
   }];
 
     this.prompt(prompts, function (props) {
@@ -88,7 +98,7 @@ module.exports = yeoman.generators.Base.extend({
         var featuresGrids = props.featuresGrids;
         var featuresTemplates = props.featuresTemplates;
         var featuresExtras = props.featuresExtras;
-
+        var featuresContainers = props.featuresContainers;
         function hasFeatureGrid(feat) {
           return featuresGrids && featuresGrids.indexOf(feat) !== -1;
         }
@@ -100,6 +110,10 @@ module.exports = yeoman.generators.Base.extend({
         function hasFeatureExtra(feat) {
           return featuresExtras && featuresExtras.indexOf(feat) !== -1;
         }
+        
+        function hasFeatureContainer(feat) {
+          return featuresContainers && featuresContainers.indexOf(feat) !== -1;
+        }
 
         this.includeBourbon = hasFeatureGrid('includeBourbon');
         this.includeNeat = hasFeatureGrid('includeNeat');
@@ -108,6 +122,7 @@ module.exports = yeoman.generators.Base.extend({
         this.includeSwig = hasFeatureTemplate('includeSwig');
 
         this.includeFontawesome = hasFeatureExtra('includeFontawesome');
+        this.includeDockerFile = hasFeatureContainer('includeDockerFile');
 
       done();
     }.bind(this));
@@ -167,8 +182,11 @@ module.exports = yeoman.generators.Base.extend({
 
 
       //JS
-      this.copy('js/scripts.js','app/assets/js/scripts.js');
-
+        this.copy('js/scripts.js','app/assets/js/scripts.js');
+        if(this.includeDockerFile)
+        {
+            this.copy('_Dockerfile','Dockerfile');
+        } 
       //CONFIG
       this.copy('gulp/_gulpfile.js','gulpfile.js');
       this.template('_package.json', 'package.json');
