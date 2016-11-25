@@ -26,7 +26,7 @@
       style: 'expanded',
       loadPath:[
         <% if (includeFontawesome) { %>config.bowerDir + '/fontawesome/scss',<% } %>
-        <% if (includeBourbon) { %>config.bowerDir + '/bourbon/app/assets/stylesheets',<% } %>
+        <% if (includeBourbon || includeNeat) { %>config.bowerDir + '/bourbon/app/assets/stylesheets',<% } %>
         <% if (includeNeat) { %>config.bowerDir + '/neat/app/assets/stylesheets',<% } %>
         <% if (includeBootstrap) { %>config.npmDir + '/bootstrap-sass/assets/stylesheets',<% } %>
       ]

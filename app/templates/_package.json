@@ -11,6 +11,7 @@
   	"gulp": "*",
   	"gulp-autoprefixer": "*",
     "gulp-jshint": "*",
+    "jshint": "*",
     "jshint-stylish": "*",
     "gulp-ruby-sass": "*",
     "gulp-util": "*",
